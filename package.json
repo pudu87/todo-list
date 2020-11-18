@@ -1,0 +1,16 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "From The Odin Project's [curriculum](https://www.theodinproject.com/lessons/todo-list)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "node-sass --watch dist/styles/scss -o dist/styles"
+  },
+  "author": "pudu87",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.5.1",
+    "webpack-cli": "^4.2.0"
+  }
+}
