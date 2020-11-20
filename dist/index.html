@@ -5,12 +5,84 @@
 
     <title>This is a website</title>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"> 
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/main.css">
   </head>
 
   <body>
-    TEST
+    <div class="container">
+      <section id="project-overview">
+        <h1>Projects</h1>
+        <ul>
+          <li>Default</li>
+          <li>Project1</li>
+          <li>Project2</li>
+          <li>Project3</li>
+          <li>Project4</li>
+        </ul>
+      </section>
+
+      <section id="project-folder">
+        <header>
+          <h1>Project1</h1>
+
+          <form class ="display-none" action="submitProject()">
+            <input type="text" id="name">
+            <input type="submit" value="confirm">
+          </form>
+
+          <div>
+            <span>o</span>
+            <span>x</span>
+          </div>
+        </header>
+
+        <ul>
+          <li>
+            <h2>title</h2>
+            <div>date</div>
+          </li>
+          <li class='urgent'>
+            <h2>title</h2>
+            <div>date</div>
+          </li>
+          <li class='very-urgent'>
+            <h2>title</h2>
+            <div>date</div>
+          </li>
+          <li>
+            <h2>title</h2>
+            <div>date</div>
+          </li>
+        </ul>
+      </section>
+
+      <section id="todo-folder">
+        <header>
+          <h1>Todo1</h1>
+          <div>
+            <span>o</span>
+            <span>x</span>
+          </div>
+        </header>
+
+        <form class="display-none" action="submitTodo()">
+          <input type="text" id="title" name="title">
+          <input type="text" id="description" name="title">
+          <input type="text" id="title" name="title">
+          <input type="submit" value="confirm">
+        </form>
+
+        <article>
+          <h2>title</h2>
+          <p>descr</p>
+          <div>date</div>
+        </article>
+      </section>
+    </div>
+
     <script src="main.js"></script>
   </body>
 </html>
