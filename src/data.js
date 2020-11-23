@@ -3,7 +3,8 @@ import { Todo, Project } from './classes.js'
 const projects = [ { name: 'default', id: 0 } ];
 const todos = [];
 
-const createProject = (p) => { 
+const createProject = (p) => {
+  p.id = projects.length ? projects[projects.length - 1].id + 1 : 0;
   let project = new Project(p);
   projects.push(project);
 }
@@ -18,8 +19,7 @@ const updateProject = (p) => {
   }
 }
 const createTodo = (t) => {
-  let id = todos.length ? todos[todos.length - 1].id + 1 : 0;
-  t.id = id;
+  t.id = todos.length ? todos[todos.length - 1].id + 1 : 0;
   let todo = new Todo(t);
   todos.push(todo);
 }
@@ -42,5 +42,5 @@ const removeTodos = (id) => {
 
 export {
   projects, todos, 
-  createProject, updateProject, createTodo, updateTodo 
+  createProject, updateProject, createTodo, updateTodo,
 }
