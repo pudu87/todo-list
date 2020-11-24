@@ -5,13 +5,10 @@
 .display-none {
   display: none; }
 
-header {
-  display: flex;
-  justify-content: space-between; }
-  header span:hover {
-    font-weight: bold;
-    color: #000;
-    cursor: pointer; }
+header span:hover {
+  font-weight: bold;
+  color: #000;
+  cursor: pointer; }
 
 h1 {
   font-weight: bold;
@@ -40,34 +37,41 @@ h2 {
   .container > *:last-child {
     border-right: none; }
 
-#project-overview {
+#projects {
   color: #777; }
-  #project-overview li {
+  #projects li {
     display: block; }
-  #project-overview li:before {
+  #projects li:before {
     position: relative;
     bottom: 5px;
     content: '⌞ ';
     font-size: 2em; }
-  #project-overview li:hover {
+  #projects li:hover {
     font-weight: bold;
     color: #000;
     cursor: pointer; }
 
-#project-folder {
+#project {
   color: #555; }
-  #project-folder li {
+  #project header {
+    display: flex;
+    justify-content: space-between; }
+  #project li {
     margin: 0 1em 2em 1em;
     padding: .5em;
     border: 1px solid; }
-  #project-folder li:hover {
+  #project li:hover {
     background-color: rgba(0, 255, 0, 0.1);
     cursor: pointer; }
 
-#todo-folder {
+#todo {
   color: #333; }
-  #todo-folder article,
-  #todo-folder form {
+  #todo header {
+    height: 42px;
+    display: flex;
+    justify-content: right; }
+  #todo article,
+  #todo form {
     padding: 1em;
     border: 1px solid;
     line-height: 2; }

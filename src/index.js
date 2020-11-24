@@ -22,4 +22,4 @@ let s = {name:'s', description:'s'}
 createTodo(a); createTodo(b); createTodo(c); createTodo(d); createTodo(e); createTodo(f);
 createProject(p); createProject(q); createProject(r); createProject(s);
 
-showProjects(projects, todos);
+showProjects();
