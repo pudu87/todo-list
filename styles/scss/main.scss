@@ -6,8 +6,6 @@
   display: none;
 }
 header {
-  display: flex;
-  justify-content: space-between;
   span:hover {
     font-weight: bold;
     color: #000;
@@ -45,7 +43,7 @@ h2 {
   }
 }
 ///////
-#project-overview {
+#projects {
   color: #777;
   li {
     display: block;
@@ -63,8 +61,12 @@ h2 {
   }
 }
 ///////
-#project-folder {
+#project {
   color: #555;
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
   li {
     margin: 0 1em 2em 1em;
     padding: .5em;
@@ -76,8 +78,13 @@ h2 {
   }
 }
 ///////
-#todo-folder {
+#todo {
   color: #333;
+  header {
+    height: 42px;
+    display: flex;
+    justify-content: right;
+  }
   article,
   form {
     padding: 1em;
