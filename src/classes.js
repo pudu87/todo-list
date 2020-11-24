@@ -17,7 +17,6 @@ class Project {
 
   constructor(obj) {
     this.name = obj.name;
-    this.description = obj.description;
     this.id = obj.id;
   }
 

@@ -6,10 +6,17 @@ import {
 
 const showProjects = () => {
   addProjects();
-  createProjectsEventListener();
+  document.querySelectorAll('#projects li').forEach(project => {
+    project.addEventListener('click', findProject);
+  })
+  document.querySelector('#projects button')
+    .addEventListener('click', toggleNewProjectForm);
+  document.querySelector('#new-project')
+    .addEventListener('submit', submitNewProject)
 }
 function addProjects() {
   let ul = document.querySelector('#projects ul');
+  ul.textContent = '';
   projects.forEach(project => {
     let li = document.createElement('li');
     li.textContent = project.name;
@@ -17,18 +24,32 @@ function addProjects() {
     ul.appendChild(li);
   })
 }
-function createProjectsEventListener() {
-  document.querySelectorAll('#projects li').forEach(project => {
-    project.addEventListener('click', (e) => {
-      let projectId = e.target.classList[0].split('_')[1];
-      let project = projects.find(p => p.id == projectId);
-      let projectTodos = [];
-      todos.forEach(todo => {
-        todo.projectId == projectId ? projectTodos.push(todo) : 0;
-      })
-      showProject(project, projectTodos);
-    })
+function findProject(e) {
+  let projectId = e.target.classList[0].split('_')[1];
+  let project = projects.find(p => p.id == projectId);
+  let projectTodos = [];
+  todos.forEach(todo => {
+    todo.projectId == projectId ? projectTodos.push(todo) : 0;
   })
+  hideNewProjectForm();
+  showProject(project, projectTodos);
+}
+function toggleNewProjectForm() { 
+  let button = document.querySelector('#projects button');
+  let form = document.querySelector('#new-project');
+  button.classList.toggle('display-none');
+  form.classList.toggle('display-none');
+}
+function submitNewProject(e) { 
+  e.preventDefault();
+  let name = document.querySelector('#new-project-name').value;
+  createProject({ name: name });
+  toggleNewProjectForm();
+  showProjects();
+}
+function hideNewProjectForm() {
+  let button = document.querySelector('#projects button');
+  button.classList[0] ? toggleNewProjectForm() : 0;
 }
 
 const showProject = (project, todos) => {
@@ -37,7 +58,7 @@ const showProject = (project, todos) => {
   clearTodoSection();
   addProjectHeader(section, project);
   addProjectTodos(section, todos);
-  createTodosEventListener(todos);
+  createTodosListener(todos);
 }
 function addProjectHeader(section, project) {
   let header = document.createElement('header')
@@ -60,7 +81,7 @@ function addProjectTodos(section, todos) {
   })
   section.appendChild(ul);
 }
-function createTodosEventListener(todos) {
+function createTodosListener(todos) {
   document.querySelectorAll('#project li').forEach(todo => {
     todo.addEventListener('click', (e) => {
       let todoId = e.currentTarget.classList[0].split('_')[1];

@@ -14,12 +14,17 @@ let d = {title:'d', description:'d', dueDate:'d', priority:'d', projectId:'2'}
 let e = {title:'e', description:'e', dueDate:'e', priority:'e', projectId:'3'}
 let f = {title:'f', description:'f', dueDate:'f', priority:'f', projectId:'4'}
 //// Projects
-let p = {name:'p', description:'p'}
-let q = {name:'q', description:'q'}
-let r = {name:'r', description:'r'}
-let s = {name:'s', description:'s'}
+let p = {name:'p'}
+let q = {name:'q'}
+let r = {name:'r'}
+let s = {name:'s'}
 //// populate
 createTodo(a); createTodo(b); createTodo(c); createTodo(d); createTodo(e); createTodo(f);
 createProject(p); createProject(q); createProject(r); createProject(s);
 
 showProjects();
+
+function myFunc() { 
+  console.log('ok');
+  return false;
+}
