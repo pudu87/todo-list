@@ -1,11 +1,13 @@
-///////
+/////// General
+
 * {
   box-sizing: border-box;
 }
 .display-none {
-  display: none;
+  display: none !important;
 }
 header {
+  height: 42px;
   span:hover {
     font-weight: bold;
     color: #000;
@@ -15,7 +17,6 @@ header {
 h1 {
   font-weight: bold;
   font-size: 1.5em;
-  margin-bottom: 1em;
 }
 h2 {
   font-weight: bold;
@@ -43,7 +44,9 @@ input[type="submit"]:active {
 .urgent {
   background-color: rgba(0, 128, 0, .2);
 }
-///////
+
+/////// Container
+
 .container {
   display: grid;
   grid-template-columns: 2fr 5fr 4fr;
@@ -58,8 +61,13 @@ input[type="submit"]:active {
     border-right: none;
   }
 }
-///////
+
+/////// Projects
+
 #projects {
+  h1 {
+    margin-bottom: 1em;
+  }
   color: #777;
   li {
     display: block;
@@ -83,12 +91,28 @@ input[type="submit"]:active {
     margin-bottom: 20px;
   }
 }
-///////
+
+/////// Project
+
 #project {
   color: #555;
   header {
     display: flex;
     justify-content: space-between;
+  }
+  form {
+    display: flex;
+    input[type="text"] {
+      max-width: 200px;
+    }
+    > * {
+      margin-bottom: 10px;
+      margin-left: 1em;
+    }
+  }
+  #update-project-name {
+    @extend h1;
+    color: #555;
   }
   li {
     margin: 0 1em 2em 1em;
@@ -100,11 +124,12 @@ input[type="submit"]:active {
     cursor: pointer;
   }
 }
-///////
+
+/////// Todo
+
 #todo {
   color: #333;
   header {
-    height: 42px;
     display: flex;
     justify-content: right;
   }
