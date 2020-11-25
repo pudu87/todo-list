@@ -92,7 +92,8 @@ input[type="submit"]:active {
   #project li {
     margin: 0 1em 2em 1em;
     padding: .5em;
-    border: 1px solid; }
+    border: 1px solid;
+    border-radius: 5px; }
   #project li:hover {
     background-color: rgba(0, 255, 0, 0.1);
     cursor: pointer; }
@@ -106,4 +107,15 @@ input[type="submit"]:active {
   #todo form {
     padding: 1em;
     border: 1px solid;
+    border-radius: 5px;
     line-height: 2; }
+  #todo form {
+    display: grid;
+    grid-template-columns: 80px auto; }
+    #todo form > * {
+      margin-bottom: 1em; }
+    #todo form label {
+      font-size: .9em; }
+    #todo form input[type="submit"] {
+      grid-column-start: 2;
+      justify-self: flex-end; }

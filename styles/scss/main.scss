@@ -118,6 +118,7 @@ input[type="submit"]:active {
     margin: 0 1em 2em 1em;
     padding: .5em;
     border: 1px solid;
+    border-radius: 5px;
   }
   li:hover {
     background-color: rgba(0, 255, 0, .1);
@@ -137,6 +138,21 @@ input[type="submit"]:active {
   form {
     padding: 1em;
     border: 1px solid;
+    border-radius: 5px;
     line-height: 2;
+  }
+  form {
+    display: grid;
+    grid-template-columns: 80px auto;
+    > * {
+      margin-bottom: 1em;
+    }
+    label {
+      font-size: .9em;
+    }
+    input[type="submit"] {
+      grid-column-start: 2;
+      justify-self: flex-end;
+    }
   }
 }
