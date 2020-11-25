@@ -4,6 +4,8 @@ import {
   createTodo, updateTodo
   } from './data.js'
 
+/// Projects
+
 const showProjects = () => {
   addProjects();
   document.querySelectorAll('#projects li').forEach(project => {
@@ -12,16 +14,13 @@ const showProjects = () => {
   document.querySelector('#projects button')
     .addEventListener('click', toggleNewProjectForm);
   document.querySelector('#new-project')
-    .addEventListener('submit', submitNewProject)
+    .addEventListener('submit', submitNewProject);
 }
 function addProjects() {
   let ul = document.querySelector('#projects ul');
   ul.textContent = '';
   projects.forEach(project => {
-    let li = document.createElement('li');
-    li.textContent = project.name;
-    li.classList.add(`project_${project.id}`);
-    ul.appendChild(li);
+    addChild(ul, 'li', project.name, `project_${project.id}`)
   })
 }
 function findProject(e) {
@@ -52,44 +51,81 @@ function hideNewProjectForm() {
   button.classList[0] ? toggleNewProjectForm() : 0;
 }
 
+/// Project
+
 const showProject = (project, todos) => {
   let section = document.querySelector('#project');
   clearProjectSection();
   clearTodoSection();
   addProjectHeader(section, project);
-  addProjectTodos(section, todos);
-  createTodosListener(todos);
+  addTodos(section, todos);
+  document.querySelectorAll('#project li').forEach(todo => {
+    todo.addEventListener('click', findTodo);
+  })
+  document.querySelector('#project .o')
+    .addEventListener('click', toggleUpdateProjectForm);
+  document.querySelector('#project .x')
+    .addEventListener('click', deleteProject);
+  document.querySelector('#update-project')
+    .addEventListener('submit', submitUpdateProject);
+}
+function toggleUpdateProjectForm() {
+  let h1 = document.querySelector('#project header h1');
+  let form = document.querySelector('#update-project');
+  h1.classList.toggle('display-none');
+  form.classList.toggle('display-none');
+}
+function deleteProject() {
+  let id = document.querySelector('#project header').classList[0].split('_')[1];
+  updateProject({ name, id, completed: true });
+  clearProjectSection();
+  showProjects();
+}
+function submitUpdateProject(e) {
+  e.preventDefault();
+  let name = document.querySelector('#update-project-name').value;
+  let id = document.querySelector('#project header').classList[0].split('_')[1];
+  updateProject({ name, id });
+  toggleUpdateProjectForm();
+  showProjects();
+  findProject(e);
 }
 function addProjectHeader(section, project) {
-  let header = document.createElement('header')
+  let header = addChild(section, 'header', '', `project_${project.id}`);
   addChild(header, 'h1', project.name);
-  let div = document.createElement('div');
+  addUpdateProjectForm(header, project);
+  let div = addChild(header, 'div', '');
   ['o', 'x'].forEach(option => {
-    addChild(div, 'span', option);
+    addChild(div, 'span', option, option);
   })
-  header.appendChild(div);
-  section.appendChild(header);
 }
-function addProjectTodos(section, todos) {
-  let ul = document.createElement('ul');
+function addUpdateProjectForm(header, project) {
+  let form = addChild(header, 'form', '', `project_${project.id}`);
+  form.classList.add('display-none');
+  form.id = 'update-project';
+  let input = addChild(form, 'input', '');
+  input.type = 'text';
+  input.id = 'update-project-name';
+  input.value = project.name;
+  let submit = addChild(form, 'input', '');
+  submit.type = 'submit';
+  submit.value = 'Change';
+}
+function addTodos(section, todos) {
+  let ul = addChild(section, 'ul', '');
   todos.forEach(todo => {
-    let li = document.createElement('li');
+    let li = addChild(ul, 'li', '', `todo_${todo.id}`);
     addChild(li, 'h2', todo.title);
     addChild(li, 'div', todo.dueDate);
-    li.classList.add(`todo_${todo.id}`);
-    ul.appendChild(li);
-  })
-  section.appendChild(ul);
-}
-function createTodosListener(todos) {
-  document.querySelectorAll('#project li').forEach(todo => {
-    todo.addEventListener('click', (e) => {
-      let todoId = e.currentTarget.classList[0].split('_')[1];
-      let todo = todos.find(t => t.id == todoId);
-      showTodo(todo)
-    })
   })
 }
+function findTodo(e) {
+  let todoId = e.currentTarget.classList[0].split('_')[1];
+  let todo = todos.find(t => t.id == todoId);
+  showTodo(todo);
+}
+
+/// Todo
 
 const showTodo = (todo) => {
   let section = document.querySelector('#todo');
@@ -98,21 +134,18 @@ const showTodo = (todo) => {
   addTodoArticle(section, todo);
 }
 function addTodoHeader(section, todo) {
-  let header = document.createElement('header');
+  let header = addChild(section, 'header', '');
   addChild(header, 'h1', '');
-  let div = document.createElement('div');
+  let div = addChild(header, 'div', '');
   ['o', 'x'].forEach(option => {
     addChild(div, 'span', option);
   })
-  header.appendChild(div);
-  section.appendChild(header);
 }
 function addTodoArticle(section, todo) {
-  let article = document.createElement('article');
+  let article = addChild(section, 'article', '');
   addChild(article, 'h2', todo.title);
   addChild(article, 'p', todo.description);
   addChild(article, 'div', todo.dueDate);
-  section.appendChild(article);
 }
 
 function clearProjectSection() {
@@ -123,10 +156,11 @@ function clearTodoSection() {
   let section = document.querySelector('#todo');
   section.textContent = '';
 }
-function addChild(parent, child, content) {
+function addChild(parent, child, content, klass = 0) {
   let c = document.createElement(child);
   c.textContent = content;
-  parent.appendChild(c);
+  klass ? c.classList.add(klass) : 0;
+  return parent.appendChild(c);
 }
 
 export { showProjects };
