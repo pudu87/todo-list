@@ -65,6 +65,7 @@ const showProject = (project, todos) => {
   clearTodoSection();
   addProjectHeader(section, project);
   addTodos(section, todos);
+  addNewTodoButton(section);
   document.querySelectorAll('#project li').forEach(todo => {
     todo.addEventListener('click', (e) => {
       let todo = findTodo(e);
@@ -78,10 +79,16 @@ const showProject = (project, todos) => {
   document.querySelector('#update-project')
     .addEventListener('submit', (e) => {
       submitUpdateProject(e);
-      console.log(e.target.parentNode)
       let project = findProject(e.target.parentNode);
       showProject(project, todos);
     });
+  document.querySelector('#new-todo-button')
+    .addEventListener('click', () => {
+      showTodo(0);
+      document.querySelector('#todo .o').classList.toggle('display-none');
+      document.querySelector('#todo input:last-child').value = 'Create';
+      toggleUpdateTodoForm();
+    })
 }
 function toggleUpdateProjectForm() {
   let h1 = document.querySelector('#project header h1');
@@ -131,6 +138,10 @@ function addTodos(section, todos) {
     addChild(li, 'div', todo.dueDate);
   })
 }
+function addNewTodoButton(section) {
+  let button = addChild(section, 'button', 'New Todo');
+  button.id = 'new-todo-button';
+}
 function findTodo(e) {
   let todoId = e.currentTarget.classList[0].split('_')[1];
   return todos.find(t => t.id == todoId);
@@ -159,12 +170,16 @@ function toggleUpdateTodoForm() {
 }
 function deleteTodo() {
   let id = document.querySelector('#todo header').classList[0].split('_')[1];
+  if (id == 'undefined') {
+    clearTodoSection();
+  } else {
   let todo = todos.find(t => t.id == id);
   updateTodo({ id, completed: true });
   clearTodoSection();
   let project = projects.find(p => p.id == todo.projectId);
   let projectTodos = findTodos(project);
   showProject(project, projectTodos);
+  }
 }
 function submitUpdateTodo(e) {
   e.preventDefault();
@@ -174,8 +189,15 @@ function submitUpdateTodo(e) {
   let description = document.querySelector('#update-todo-description').value;
   let dueDate = document.querySelector('#update-todo-dueDate').value;
   let priority = 0;
-  let projectId = todo.projectId;
-  todo = updateTodo({ title, description, dueDate, priority, projectId, id });
+  let projectId;
+  if (id == 'undefined') {
+    projectId = document.querySelector('#project header')
+      .classList[0].split('_')[1];
+    todo = createTodo({ title, description, dueDate, priority, projectId })
+  } else {
+    projectId = todo.projectId;
+    todo = updateTodo({ title, description, dueDate, priority, projectId, id });
+  }
   toggleUpdateTodoForm();
   showTodo(todo);
   let project = projects.find(p => p.id == todo.projectId);
@@ -200,7 +222,7 @@ function addUpdateTodoForm(section, todo) {
     let input = addChild(form, 'input', '');
     input.type = 'text';
     input.id = `update-todo-${prop}`;
-    input.value = todo[prop];
+    input.value = todo[prop] == undefined ? '' : todo[prop];
   })
   let submit = addChild(form, 'input', '');
   submit.type = 'submit';

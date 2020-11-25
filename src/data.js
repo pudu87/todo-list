@@ -22,6 +22,7 @@ const createTodo = (t) => {
   t.id = todos.length ? todos[todos.length - 1].id + 1 : 0;
   let todo = new Todo(t);
   todos.push(todo);
+  return todo;
 }
 const updateTodo = (t) => {
   let index = todos.findIndex(todo => t.id == todo.id);
