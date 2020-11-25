@@ -29,6 +29,7 @@ const updateTodo = (t) => {
   t.completed === undefined ? 
     todos.splice(index, 1, todo) :
     todos.splice(index, 1);
+  return todo;
 }
 const removeTodos = (id) => {
   let indexes = [];

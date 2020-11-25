@@ -23,8 +23,3 @@ createTodo(a); createTodo(b); createTodo(c); createTodo(d); createTodo(e); creat
 createProject(p); createProject(q); createProject(r); createProject(s);
 
 showProjects();
-
-function myFunc() { 
-  console.log('ok');
-  return false;
-}
