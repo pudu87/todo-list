@@ -40,9 +40,13 @@ function toggleUpdateProjectForm() {
 }
 function deleteCurrentProject() {
   let id = document.querySelector('#project header').classList[0].split('_')[1];
-  deleteProject(id);
-  clearProjectSection();
-  showProjects();
+  if (id == 0) {
+    alert('Default map cannot be deleted!');
+  } else {
+    deleteProject(id);
+    clearProjectSection();
+    showProjects();
+  }
 }
 function submitUpdateProject(e, pTodos) {
   e.preventDefault();

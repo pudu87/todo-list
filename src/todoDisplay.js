@@ -97,8 +97,6 @@ function addTodoArticle(todo) {
 
 export { showTodo, toggleUpdateTodoForm };
 
-// TODO: make default show all todo's
-// TODO: cannnot remove default map
 // TODO: priorities
 // TODO: add date manipulation and sorting
 // TODO: local storage
