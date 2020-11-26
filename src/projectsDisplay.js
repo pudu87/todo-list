@@ -42,10 +42,13 @@ function submitNewProject(e) {
   enterData();
   toggleNewProjectForm();
   showProjects();
+  let project = projects[projects.length - 1];
+  let todos = findTodos(project);
+  showProject(project, todos);
 }
 function enterData() {
   let name = document.querySelector('#new-project-name').value;
-  createProject({ name });
+  let project = createProject({ name });
 }
 function hideNewProjectForm() {
   button.classList.contains('display-none') ? toggleNewProjectForm() : 0;

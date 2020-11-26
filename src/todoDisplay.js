@@ -97,7 +97,6 @@ function addTodoArticle(todo) {
 
 export { showTodo, toggleUpdateTodoForm };
 
-// TODO: go to new project after create
 // TODO: make default show all todo's
 // TODO: cannnot remove default map
 // TODO: priorities
