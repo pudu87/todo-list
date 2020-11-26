@@ -1,4 +1,5 @@
 import { 
+  todos,
   updateProject, deleteProject,
   findProject, findTodo
   } from './data.js'
@@ -8,11 +9,11 @@ import { clearProjectSection, clearTodoSection, addChild } from './displayOps'
 
 const section = document.querySelector('#project');
 
-function showProject(project, todos) {
+function showProject(project, pTodos) {
   clearProjectSection();
   clearTodoSection();
   addProjectHeader(project);
-  addTodos(todos);
+  addTodos(project, pTodos);
   addNewTodoButton();
   document.querySelectorAll('#project li').forEach(todo => {
     todo.addEventListener('click', selectTodo);
@@ -22,7 +23,7 @@ function showProject(project, todos) {
   document.querySelector('#project .x')
     .addEventListener('click', deleteCurrentProject);
   document.querySelector('#update-project')
-    .addEventListener('submit', (e) => submitUpdateProject(e, todos));
+    .addEventListener('submit', (e) => submitUpdateProject(e, pTodos));
   document.querySelector('#new-todo-button')
     .addEventListener('click', selectNewTodo);
 }
@@ -43,14 +44,14 @@ function deleteCurrentProject() {
   clearProjectSection();
   showProjects();
 }
-function submitUpdateProject(e, todos) {
+function submitUpdateProject(e, pTodos) {
   e.preventDefault();
   enterData();
   toggleUpdateProjectForm();
   showProjects();
   let projectId = e.target.parentNode.classList[0].split('_')[1];
   let project = findProject(projectId);
-  showProject(project, todos);
+  showProject(project, pTodos);
 }
 function enterData() {
   let name = document.querySelector('#update-project-name').value;
@@ -83,9 +84,10 @@ function addUpdateProjectForm(header, project) {
   submit.type = 'submit';
   submit.value = 'Change';
 }
-function addTodos(todos) {
+function addTodos(project, pTodos) {
   let ul = addChild(section, 'ul', '');
-  todos.forEach(todo => {
+  project.id == 0 ? pTodos = todos : 0;
+  pTodos.forEach(todo => {
     let li = addChild(ul, 'li', '', `todo_${todo.id}`);
     addChild(li, 'h2', todo.title);
     addChild(li, 'div', todo.dueDate);

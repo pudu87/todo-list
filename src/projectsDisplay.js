@@ -48,7 +48,7 @@ function submitNewProject(e) {
 }
 function enterData() {
   let name = document.querySelector('#new-project-name').value;
-  let project = createProject({ name });
+  createProject({ name });
 }
 function hideNewProjectForm() {
   button.classList.contains('display-none') ? toggleNewProjectForm() : 0;
