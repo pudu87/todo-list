@@ -3,7 +3,7 @@ import {
   createProject, updateProject,
   createTodo, updateTodo
   } from './data.js'
-import { showProjects } from './display.js'
+import { showProjects } from './projectsDisplay.js'
 
 // Pre-populate
 //// Todos
