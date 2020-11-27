@@ -1,3 +1,9 @@
+/////// Constants
+
+$low: rgba(0, 255, 0, .04);
+$medium: rgba(0, 255, 0, .2);
+$high: rgba(0, 255, 0, .5);
+
 /////// General
 
 * {
@@ -38,11 +44,48 @@ button:active,
 input[type="submit"]:active {
   box-shadow: 1px 1px;
 }
-.very-urgent {
-  background-color: rgba(0, 255, 0, .3);
+.low-priority {
+  background-color: $low;
 }
-.urgent {
-  background-color: rgba(0, 128, 0, .2);
+.medium-priority {
+  background-color: $medium;
+}
+.high-priority {
+  background-color: $high;
+}
+
+/////// Radio-buttons
+
+input[type="radio"] {
+  display: none;
+  + label span {
+    display: inline-block;
+    width: 40px;
+    height: 30px;
+    margin: -1px 4px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 10%;
+    border: 1px solid #aaa;
+    text-align: center;
+    line-height: 44px;
+    img {
+      opacity: 0;
+      transition: all .3s ease;
+    }
+  }
+  &#low-priority + label span {
+    background-color: $low;
+  }
+  &#medium-priority + label span {
+    background-color: $medium;
+  }
+  &#high-priority + label span {
+    background-color: $high;
+  }
+  &:checked + label span img {
+    opacity: .7;
+  }
 }
 
 /////// Container
@@ -121,7 +164,7 @@ input[type="submit"]:active {
     border-radius: 5px;
   }
   li:hover {
-    background-color: rgba(0, 255, 0, .1);
+    background-color: #fff;
     cursor: pointer;
   }
 }

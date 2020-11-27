@@ -93,6 +93,7 @@ function addTodos(project, pTodos) {
   project.id == 0 ? pTodos = todos : 0;
   pTodos.forEach(todo => {
     let li = addChild(ul, 'li', '', `todo_${todo.id}`);
+    li.classList.add(`${todo.priority}-priority`);
     addChild(li, 'h2', todo.title);
     addChild(li, 'div', todo.dueDate);
   })
