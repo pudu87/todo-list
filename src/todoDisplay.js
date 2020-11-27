@@ -4,6 +4,7 @@ import {
   } from './data.js'
 import { showProject } from './projectDisplay.js'
 import { clearTodoSection, addChild } from './displayOps'
+import { add } from 'date-fns';
 
 /// Todo
 
@@ -75,7 +76,7 @@ function addTodoHeader(todo) {
 function addUpdateTodoForm(todo) {
   let form = addChild(section, 'form', '', 'display-none');
   form.id = 'update-todo';
-  ['title', 'description', 'dueDate'].forEach(prop => {
+  ['title', 'description'].forEach(prop => {
     let labelContent = prop.charAt(0).toUpperCase() + prop.slice(1) + ':';
     let label = addChild(form, 'label', labelContent);
     label.htmlFor = `update-todo-${prop}`;
@@ -84,11 +85,20 @@ function addUpdateTodoForm(todo) {
     input.id = `update-todo-${prop}`;
     input.value = todo[prop] == undefined ? '' : todo[prop];
   })
+  // DueDate
+  addChild(form, 'label', 'Due Date:');
+  let timeDiv = addChild(form, 'div', '');
+  timeDiv.id = 'dueDate';
+  let dateInput = addChild(timeDiv, 'input', '');
+  dateInput.type = 'date';
+  dateInput.id = 'update-todo-dueDate';
+  dateInput.value = todo.dueDate == undefined ? '' : todo.dueDate;
+  // Priority
   addChild(form, 'label', 'Priority:');
-  let div = addChild(form, 'div');
-  div.id = 'priorities';
+  let priorityDiv = addChild(form, 'div', '');
+  priorityDiv.id = 'priorities';
   ['low', 'medium', 'high'].forEach(prop => {
-    let input = addChild(div, 'input', '');
+    let input = addChild(priorityDiv, 'input', '');
     input.type = 'radio';
     input.id = `${prop}-priority`;
     input.name = 'priority';
@@ -98,7 +108,7 @@ function addUpdateTodoForm(todo) {
     } else {
       prop == 'low' ? input.checked = true : 0;
     }
-    let label = addChild(div, 'label', '');
+    let label = addChild(priorityDiv, 'label', '');
     label.htmlFor = `${prop}-priority`;
     let span = addChild(label, 'span', '');
     let img = addChild(span, 'img', '');
@@ -118,7 +128,6 @@ function addTodoArticle(todo) {
 
 export { showTodo, toggleUpdateTodoForm };
 
-// TODO: priorities
 // TODO: add date manipulation and sorting
 // TODO: local storage
 // TODO: ask for confirmation when deleting

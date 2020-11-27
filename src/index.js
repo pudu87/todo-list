@@ -6,12 +6,12 @@ import { showProjects } from './projectsDisplay.js'
 
 // Pre-populate
 //// Todos
-let a = {title:'a', description:'a', dueDate:'a', priority:'low', projectId:'0'}
-let b = {title:'b', description:'b', dueDate:'b', priority:'medium', projectId:'0'}
-let c = {title:'c', description:'c', dueDate:'c', priority:'high', projectId:'1'}
-let d = {title:'d', description:'d', dueDate:'d', priority:'low', projectId:'2'}
-let e = {title:'e', description:'e', dueDate:'e', priority:'medium', projectId:'3'}
-let f = {title:'f', description:'f', dueDate:'f', priority:'high', projectId:'4'}
+let a = {title:'a', description:'a', dueDate:undefined, priority:'low', projectId:'0'}
+let b = {title:'b', description:'b', dueDate:undefined, priority:'medium', projectId:'0'}
+let c = {title:'c', description:'c', dueDate:undefined, priority:'high', projectId:'1'}
+let d = {title:'d', description:'d', dueDate:undefined, priority:'low', projectId:'2'}
+let e = {title:'e', description:'e', dueDate:undefined, priority:'medium', projectId:'3'}
+let f = {title:'f', description:'f', dueDate:undefined, priority:'high', projectId:'4'}
 //// Projects
 let p = {name:'p'}
 let q = {name:'q'}
