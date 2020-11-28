@@ -1,10 +1,11 @@
 import { 
   createTodo, updateTodo, deleteTodo,
   findProject, findTodos, findTodo
-  } from './data.js'
+  } from './dataOps.js'
 import { showProject } from './projectDisplay.js'
-import { clearTodoSection, addChild } from './displayOps'
-import { add } from 'date-fns';
+import { clearTodoSection, 
+  addChild, dateToString 
+  } from './displayOps'
 
 /// Todo
 
@@ -92,7 +93,7 @@ function addUpdateTodoForm(todo) {
   let dateInput = addChild(timeDiv, 'input', '');
   dateInput.type = 'date';
   dateInput.id = 'update-todo-dueDate';
-  dateInput.value = todo.dueDate == undefined ? '' : todo.dueDate;
+  dateInput.value = dateToString(todo.dueDate);
   // Priority
   addChild(form, 'label', 'Priority:');
   let priorityDiv = addChild(form, 'div', '');
@@ -123,11 +124,10 @@ function addTodoArticle(todo) {
   let article = addChild(section, 'article', '');
   addChild(article, 'h2', todo.title);
   addChild(article, 'p', todo.description);
-  addChild(article, 'div', todo.dueDate);
+  addChild(article, 'div', dateToString(todo.dueDate));
 }
 
 export { showTodo, toggleUpdateTodoForm };
 
-// TODO: add date manipulation and sorting
 // TODO: local storage
 // TODO: ask for confirmation when deleting

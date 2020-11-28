@@ -1,11 +1,15 @@
+import { todos } from './data.js'
 import { 
-  todos,
   updateProject, deleteProject,
-  findProject, findTodo
-  } from './data.js'
+  findProject, findTodo, 
+  sortTodos
+  } from './dataOps.js'
 import { showProjects } from './projectsDisplay.js'
 import { showTodo, toggleUpdateTodoForm } from './todoDisplay.js'
-import { clearProjectSection, clearTodoSection, addChild } from './displayOps'
+import { 
+  clearProjectSection, clearTodoSection, 
+  addChild, dateToString
+  } from './displayOps'
 
 const section = document.querySelector('#project');
 
@@ -63,7 +67,7 @@ function enterData() {
   updateProject({ name, id });
 }
 function selectNewTodo() {
-  showTodo(0);
+  showTodo({ dueDate: new Date() });
   document.querySelector('#todo .o').classList.toggle('display-none');
   document.querySelector('#todo input:last-child').value = 'Create';
   toggleUpdateTodoForm();
@@ -91,11 +95,12 @@ function addUpdateProjectForm(header, project) {
 function addTodos(project, pTodos) {
   let ul = addChild(section, 'ul', '');
   project.id == 0 ? pTodos = todos : 0;
-  pTodos.forEach(todo => {
+  let sortedTodos = sortTodos(pTodos);
+  sortedTodos.forEach(todo => {
     let li = addChild(ul, 'li', '', `todo_${todo.id}`);
     li.classList.add(`${todo.priority}-priority`);
     addChild(li, 'h2', todo.title);
-    addChild(li, 'div', todo.dueDate);
+    addChild(li, 'div', dateToString(todo.dueDate));
   })
 }
 function addNewTodoButton() {

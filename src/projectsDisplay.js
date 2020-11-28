@@ -1,8 +1,8 @@
+import { projects } from './data'
 import { 
-  projects,
   createProject,
   findProject, findTodos
-  } from './data.js'
+  } from './dataOps.js'
 import { showProject } from './projectDisplay'
 import { addChild } from './displayOps'
 
