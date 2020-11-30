@@ -17,9 +17,9 @@ function showTodo(todo) {
   addTodoHeader(todo);
   addUpdateTodoForm(todo);
   addTodoArticle(todo);
-  document.querySelector('#todo .o')
+  document.querySelector('#todo .edit')
     .addEventListener('click', toggleUpdateTodoForm);
-  document.querySelector('#todo .x')
+  document.querySelector('#todo .delete')
     .addEventListener('click', () => {
       window.confirm(deleteMsg) ? deleteCurrentTodo() : 0;
     });
@@ -73,8 +73,9 @@ function addTodoHeader(todo) {
   let header = addChild(section, 'header', '', `todo_${todo.id}`);
   addChild(header, 'h1', '');
   let div = addChild(header, 'div', '');
-  ['o', 'x'].forEach(option => {
-    addChild(div, 'span', option, option);
+  [['fa-edit', 'edit'], ['fa-trash-alt', 'delete',]].forEach(clazz => {
+    let icon = addChild(div, 'i', '', 'far');
+    icon.classList.add(...clazz);
   })
 }
 function addUpdateTodoForm(todo) {

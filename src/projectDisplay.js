@@ -23,9 +23,9 @@ function showProject(project, pTodos) {
   document.querySelectorAll('#project li').forEach(todo => {
     todo.addEventListener('click', selectTodo);
   })
-  document.querySelector('#project .o')
+  document.querySelector('#project .fa-edit')
     .addEventListener('click', toggleUpdateProjectForm);
-  document.querySelector('#project .x')
+  document.querySelector('#project .fa-trash-alt')
     .addEventListener('click', () => {
       window.confirm(deleteMsg) ? deleteCurrentProject() : 0;
     });
@@ -75,7 +75,7 @@ function enterData() {
 }
 function selectNewTodo() {
   showTodo({ dueDate: new Date() });
-  document.querySelector('#todo .o').classList.toggle('display-none');
+  document.querySelector('#todo .edit').classList.toggle('display-none');
   document.querySelector('#todo input:last-child').value = 'Create';
   toggleUpdateTodoForm();
 }
@@ -84,8 +84,9 @@ function addProjectHeader(project) {
   addChild(header, 'h1', project.name);
   addUpdateProjectForm(header, project);
   let div = addChild(header, 'div', '');
-  ['o', 'x'].forEach(option => {
-    addChild(div, 'span', option, option);
+  [['fa-edit', 'edit'], ['fa-trash-alt', 'delete',]].forEach(clazz => {
+    let icon = addChild(div, 'i', '', 'far');
+    icon.classList.add(...clazz);
   })
 }
 function addUpdateProjectForm(header, project) {
