@@ -67,10 +67,13 @@ function sortTodos(todos) {
   todos.sort((a, b) => a.dueDate > b.dueDate);
   return todos;
 }
+function checkIfOverdue(todo) {
+  return new Date() > new Date(todo.dueDate);
+}
 
 export {
   createProject, updateProject, deleteProject,
   createTodo, updateTodo, deleteTodo,
   findProject, findTodos, findTodo,
-  sortTodos
+  sortTodos, checkIfOverdue
 }

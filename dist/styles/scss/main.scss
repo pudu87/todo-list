@@ -3,6 +3,7 @@
 $low: rgba(0, 255, 0, .04);
 $medium: rgba(0, 255, 0, .2);
 $high: rgba(0, 255, 0, .5);
+$overdue: rgba(255, 0, 0, 0.4);
 
 /////// General
 
@@ -53,6 +54,9 @@ input[type="submit"]:active {
 .delete:hover {
   color: #999;
 }
+
+/////// Priority-colors
+
 .low-priority {
   background-color: $low;
 }
@@ -62,6 +66,22 @@ input[type="submit"]:active {
 .high-priority {
   background-color: $high;
 }
+.overdue {
+  background-color: $overdue !important;
+}
+.low-priority:hover {
+  background: linear-gradient(90deg, #fff 0 89%, $low 90% 100%);
+}
+.medium-priority:hover {
+  background: linear-gradient(90deg, #fff 0 89%, $medium 90% 100%);
+}
+.high-priority:hover {
+  background: linear-gradient(90deg, #fff 0 89%, $high 90% 100%);
+}
+.overdue:hover {
+  background: linear-gradient(90deg, #fff 0 89%, $overdue 90% 100%) !important;
+}
+
 
 /////// Radio-buttons
 
@@ -173,7 +193,6 @@ input[type="radio"] {
     border-radius: 5px;
   }
   li:hover {
-    background-color: #fff;
     cursor: pointer;
   }
 }

@@ -7,8 +7,6 @@ import { clearTodoSection,
   addChild, dateToString 
 } from './displayOps'
 
-/// Todo
-
 const section = document.querySelector('#todo');
 const deleteMsg = 'Do you really want to delete this todo?';
 

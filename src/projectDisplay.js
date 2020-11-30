@@ -2,7 +2,7 @@ import { todos } from './data.js'
 import { 
   updateProject, deleteProject,
   findProject, findTodo, 
-  sortTodos
+  sortTodos, checkIfOverdue
 } from './dataOps.js'
 import { showProjects } from './projectsDisplay.js'
 import { showTodo, toggleUpdateTodoForm } from './todoDisplay.js'
@@ -107,6 +107,7 @@ function addTodos(project, pTodos) {
   sortedTodos.forEach(todo => {
     let li = addChild(ul, 'li', '', `todo_${todo.id}`);
     li.classList.add(`${todo.priority}-priority`);
+    checkIfOverdue(todo) ? li.classList.add('overdue') : 0;
     addChild(li, 'h2', todo.title);
     addChild(li, 'div', dateToString(todo.dueDate));
   })
