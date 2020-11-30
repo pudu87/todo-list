@@ -1,15 +1,16 @@
 import { 
   createTodo, updateTodo, deleteTodo,
   findProject, findTodos, findTodo
-  } from './dataOps.js'
+} from './dataOps.js'
 import { showProject } from './projectDisplay.js'
 import { clearTodoSection, 
   addChild, dateToString 
-  } from './displayOps'
+} from './displayOps'
 
 /// Todo
 
 const section = document.querySelector('#todo');
+const deleteMsg = 'Do you really want to delete this todo?';
 
 function showTodo(todo) {
   clearTodoSection();
@@ -19,7 +20,9 @@ function showTodo(todo) {
   document.querySelector('#todo .o')
     .addEventListener('click', toggleUpdateTodoForm);
   document.querySelector('#todo .x')
-    .addEventListener('click', deleteCurrentTodo);
+    .addEventListener('click', () => {
+      window.confirm(deleteMsg) ? deleteCurrentTodo() : 0;
+    });
   document.querySelector('#update-todo')
     .addEventListener('submit', submitUpdateTodo);
 }

@@ -3,15 +3,16 @@ import {
   updateProject, deleteProject,
   findProject, findTodo, 
   sortTodos
-  } from './dataOps.js'
+} from './dataOps.js'
 import { showProjects } from './projectsDisplay.js'
 import { showTodo, toggleUpdateTodoForm } from './todoDisplay.js'
 import { 
   clearProjectSection, clearTodoSection, 
   addChild, dateToString
-  } from './displayOps'
+} from './displayOps'
 
 const section = document.querySelector('#project');
+const deleteMsg = 'Do you really want to delete this project?';
 
 function showProject(project, pTodos) {
   clearProjectSection();
@@ -25,7 +26,9 @@ function showProject(project, pTodos) {
   document.querySelector('#project .o')
     .addEventListener('click', toggleUpdateProjectForm);
   document.querySelector('#project .x')
-    .addEventListener('click', deleteCurrentProject);
+    .addEventListener('click', () => {
+      window.confirm(deleteMsg) ? deleteCurrentProject() : 0;
+    });
   document.querySelector('#update-project')
     .addEventListener('submit', (e) => submitUpdateProject(e, pTodos));
   document.querySelector('#new-todo-button')

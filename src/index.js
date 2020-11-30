@@ -1,7 +1,7 @@
 import { 
   createProject,
   createTodo
-  } from './dataOps.js'
+} from './dataOps.js'
 import { showProjects } from './projectsDisplay.js'
 
 // Pre-populate

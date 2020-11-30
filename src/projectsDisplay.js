@@ -2,7 +2,7 @@ import { projects } from './data'
 import { 
   createProject,
   findProject, findTodos
-  } from './dataOps.js'
+} from './dataOps.js'
 import { showProject } from './projectDisplay'
 import { addChild } from './displayOps'
 

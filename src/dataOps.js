@@ -1,7 +1,7 @@
 import { 
   Project, Todo,
   projects, todos
-  } from './data.js'
+} from './data.js'
 
 function createProject(p) {
   p.id = projects.length ? projects[projects.length - 1].id + 1 : 0;
