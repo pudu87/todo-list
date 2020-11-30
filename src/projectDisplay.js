@@ -67,7 +67,11 @@ function submitUpdateProject(e, pTodos) {
 function enterData() {
   let name = document.querySelector('#update-project-name').value;
   let id = document.querySelector('#project header').classList[0].split('_')[1];
+  if (id == 0) {
+    alert('Default map name cannot be changed!');
+  } else {
   updateProject({ name, id });
+  }
 }
 function selectNewTodo() {
   showTodo({ dueDate: new Date() });
