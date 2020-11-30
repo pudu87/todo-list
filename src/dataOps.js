@@ -2,37 +2,44 @@ import {
   Project, Todo,
   projects, todos
 } from './data.js'
+import { populateStorage } from './localStorage.js';
 
 function createProject(p) {
   p.id = projects.length ? projects[projects.length - 1].id + 1 : 0;
   let project = new Project(p);
   projects.push(project);
+  populateStorage();
 }
 function updateProject(p) {
   let index = projects.findIndex(project => p.id == project.id);
   let project = new Project(p);
   projects.splice(index, 1, project);
+  populateStorage();
 }
 function deleteProject(id) {
   let index = projects.findIndex(project => id == project.id);
   projects.splice(index, 1);
   deleteTodos(id);
+  populateStorage();
 }
 function createTodo(t) {
   t.id = todos.length ? todos[todos.length - 1].id + 1 : 0;
   let todo = new Todo(t);
   todos.push(todo);
+  populateStorage();
   return todo;
 }
 function updateTodo(t) {
   let index = todos.findIndex(todo => t.id == todo.id);
   let todo = new Todo(t);
   todos.splice(index, 1, todo);
+  populateStorage();
   return todo;
 }
 function deleteTodo(id) {
   let index = todos.findIndex(todo => id == todo.id);
   todos.splice(index, 1);
+  populateStorage();
 }
 function findProject(id) {
   return projects.find(p => p.id == id);

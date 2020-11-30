@@ -18,10 +18,10 @@ class Todo {
   }
 }
 
-const projects = [ new Project({ name: 'default', id: 0}) ];
+const projects = [];
 const todos = [];
 
 export { 
-  Project, Todo, 
+  Project, Todo,
   projects, todos
 }

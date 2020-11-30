@@ -89,7 +89,6 @@ function addUpdateTodoForm(todo) {
     input.id = `update-todo-${prop}`;
     input.value = todo[prop] == undefined ? '' : todo[prop];
   })
-  // DueDate
   addChild(form, 'label', 'Due Date:');
   let timeDiv = addChild(form, 'div', '');
   timeDiv.id = 'dueDate';
@@ -97,7 +96,6 @@ function addUpdateTodoForm(todo) {
   dateInput.type = 'date';
   dateInput.id = 'update-todo-dueDate';
   dateInput.value = dateToString(todo.dueDate);
-  // Priority
   addChild(form, 'label', 'Priority:');
   let priorityDiv = addChild(form, 'div', '');
   priorityDiv.id = 'priorities';
@@ -131,6 +129,3 @@ function addTodoArticle(todo) {
 }
 
 export { showTodo, toggleUpdateTodoForm };
-
-// TODO: local storage
-// TODO: ask for confirmation when deleting
