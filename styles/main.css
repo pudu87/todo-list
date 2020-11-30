@@ -54,6 +54,21 @@ input[type="submit"]:active {
 .high-priority {
   background-color: rgba(0, 255, 0, 0.5); }
 
+.overdue {
+  background-color: rgba(255, 0, 0, 0.4) !important; }
+
+.low-priority:hover {
+  background: linear-gradient(90deg, #fff 0 89%, rgba(0, 255, 0, 0.04) 90% 100%); }
+
+.medium-priority:hover {
+  background: linear-gradient(90deg, #fff 0 89%, rgba(0, 255, 0, 0.2) 90% 100%); }
+
+.high-priority:hover {
+  background: linear-gradient(90deg, #fff 0 89%, rgba(0, 255, 0, 0.5) 90% 100%); }
+
+.overdue:hover {
+  background: linear-gradient(90deg, #fff 0 89%, rgba(255, 0, 0, 0.4) 90% 100%) !important; }
+
 input[type="radio"] {
   display: none; }
   input[type="radio"] + label span {
@@ -132,7 +147,6 @@ input[type="radio"] {
     border: 1px solid;
     border-radius: 5px; }
   #project li:hover {
-    background-color: #fff;
     cursor: pointer; }
 
 #todo {
