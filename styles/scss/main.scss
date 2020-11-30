@@ -44,6 +44,15 @@ button:active,
 input[type="submit"]:active {
   box-shadow: 1px 1px;
 }
+.edit,
+.delete {
+  cursor: pointer;
+  margin-left: 10px;
+}
+.edit:hover,
+.delete:hover {
+  color: #999;
+}
 .low-priority {
   background-color: $low;
 }
