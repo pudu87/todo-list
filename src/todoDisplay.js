@@ -33,13 +33,13 @@ function toggleUpdateTodoForm() {
 function deleteCurrentTodo() {
   let id = document.querySelector('#todo header').classList[0].split('_')[1];
   let projectId = document.querySelector('#project header').classList[0].split('_')[1];
-  deleteTodo(id);
-  clearTodoSection();
   if (id != 'undefined') {
+    deleteTodo(id);
     let project = findProject(projectId);
     let projectTodos = findTodos(project.id);
     showProject(project, projectTodos);
   }
+  clearTodoSection();
 }
 function submitUpdateTodo(e) {
   e.preventDefault();

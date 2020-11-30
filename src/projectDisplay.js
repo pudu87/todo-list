@@ -76,7 +76,7 @@ function enterData() {
 function selectNewTodo() {
   showTodo({ dueDate: new Date() });
   document.querySelector('#todo .edit').classList.toggle('display-none');
-  document.querySelector('#todo input:last-child').value = 'Create';
+  document.querySelector('#todo input[type="submit"]').value = 'Create';
   toggleUpdateTodoForm();
 }
 function addProjectHeader(project) {
